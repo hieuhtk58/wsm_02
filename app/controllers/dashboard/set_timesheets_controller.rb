@@ -23,4 +23,11 @@ class Dashboard::SetTimesheetsController < ApplicationController
       redirect_to dashboard_time_sheets_path
     end
   end
+
+  def authenticate_manager!
+    unless current_user.manager?
+      flash[:warning] = t "you_are_not_manager"
+      redirect_to dashboard_time_sheets_path
+    end
+  end
 end

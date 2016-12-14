@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.recent.page(params[:page])
+    @users = User.order_date_desc.page(params[:page])
       .per Settings.per_page.admin.user
   end
 
